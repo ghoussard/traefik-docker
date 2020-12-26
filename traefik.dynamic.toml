@@ -1,0 +1,10 @@
+# Dynamic configuration
+
+[http.middlewares.redirect-to-https.redirectscheme]
+  scheme = "https"
+  permanent = true
+
+[tls]
+  [[tls.certificates]]
+    certFile = "/etc/certs/cert.pem"
+    keyFile = "/etc/certs/key.pem"

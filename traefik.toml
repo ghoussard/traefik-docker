@@ -1,0 +1,22 @@
+# Static configuration
+
+[api]
+  insecure = true
+
+[log]
+  level = "DEBUG"
+
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+  [entryPoints.https]
+    address = ":443"
+
+[providers.docker]
+  endpoint = "unix:///var/run/docker.sock"
+  network = "traefik"
+  exposedByDefault = false
+
+[providers.file]
+  filename = "/etc/traefik/traefik.dynamic.toml"
+  watch = true

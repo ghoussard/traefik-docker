@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  proxy:
+    image: traefik:v2.3.6
+    container_name: traefik
+    restart: always
+    ports:
+      - 8080:8080
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.toml:/etc/traefik/traefik.toml:ro
+      - ./traefik.dynamic.toml:/etc/traefik/traefik.dynamic.toml:ro
+      - ./certs:/etc/certs:ro
+    networks: 
+      - traefik
+
+networks:
+  traefik:
+    external: true
+    name: traefik
